@@ -4,48 +4,48 @@ export const useItemType = ()=>{
     switch (code.length) {
       case 1:
         return {
-        padding: '5px 0 0 10px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+        padding: '10px 0 10px 10px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
       };
       case 2:
         return {
-          padding: '5px 0 0 20px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 20px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 3:
         return {
-          padding: '5px 0 0 30px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 30px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 4:
         return {
-          padding: '5px 0 0 40px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 40px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 5:
         return {
-          padding: '5px 0 0 50px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 50px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 6:
         return {
-          padding: '5px 0 0 60px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px60px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 7:
         return {
-          padding: '5px 0 0 70px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 70px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
         };
       case 8:
         return {
-          padding: '5px 0 0 80px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 80px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
           };
 case 9:
         return {
-          padding: '5px 0 0 90px',
-          color: `${isHighlighted ? 'red' : 'black'}`,
+          padding: '10px 0 10px 90px',
+          color: `${isHighlighted ? '#4CAF50' : 'black'}`,
           };
 
       default:

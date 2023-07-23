@@ -4,10 +4,10 @@ type ItemType = {
 }
 
 export type StyledPropsType = {
-  handleItemType: ItemType
+  itemType: ItemType
 }
 
-export type handleItemPropsType = {
+export type HandleItemType = {
   handleItemType: (code: string, isHighlighted: boolean) => ItemType
 }
 

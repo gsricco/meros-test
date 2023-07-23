@@ -1,23 +1,19 @@
 import React, {useState} from 'react';
 import data from '../data/data_okved.json';
 import {useItemType} from "../common/hooks/useItemType";
-import {StyledBox, StyledInput, StyledItem, StyledItemContainer} from "./App.styled";
-import {handleItemPropsType, Item, SearchResultItem} from "../types/types";
+import {StyledBox, StyledBoxComment, StyledInput, StyledItemContainer} from "./App.styled";
+import {HandleItemType, Item, SearchResultItem} from "../types/types";
+import icon from '../styles/assets/images/ok.svg'
+import {convertToSearchResultItem} from "../common/utils/convertToSearchResultItem";
 
-
-const convertToSearchResultItem = (item: Item): SearchResultItem => {
-  const {children, ...rest} = item;
-  const convertedChildren = children?.map(convertToSearchResultItem);
-  return {...rest, children: convertedChildren};
-};
 
 
 const App = () => {
 
 
 
-  const saveSearch = localStorage.getItem('search');
-  const saveFound = JSON.parse(localStorage.getItem('foundItems') || '')
+  const saveSearch= localStorage.getItem('search');
+  const saveFound = JSON.parse(localStorage.getItem('foundItems')||'[]');
 
   const [searchQuery, setSearchQuery] = useState(saveSearch || '');
   const [searchResult, setSearchResult] = useState<SearchResultItem[]>(saveFound);
@@ -39,8 +35,10 @@ const App = () => {
     const foundItems: SearchResultItem[] = [];
 
     items.forEach((item) => {
-      const title = item.name.toLowerCase();
-      if (title.includes(query)) {
+      const name = item.name.toLowerCase();
+      const code = item.code.toLowerCase();
+      const comment = item.comment.toLowerCase();
+      if (name.includes(query)||(code.includes(query)||(comment.includes(query)))) {
         foundItems.push(item);
       }
 
@@ -63,7 +61,7 @@ const App = () => {
 
 
 
-  const {handleItemType}:handleItemPropsType = useItemType()
+  const {handleItemType}:HandleItemType = useItemType()
 
 
   const renderItems = (items: SearchResultItem[])=> {
@@ -72,22 +70,16 @@ const App = () => {
       <React.Fragment>
 
           {items.map((item, index) => (
-            <StyledItem key={index} >
-              {/*<h2>{item.code} - {item.name}</h2>*/}
-              <StyledBox handleItemType={handleItemType(item.code,isItemHighlighted(item))} >
+            <div key={index} >
+              <StyledBox itemType={handleItemType(item.code,isItemHighlighted(item))} >
+                {isItemHighlighted(item)&&<img src={icon} width={'40px'} alt="tetst"/>}
                 { item.code} - {item.name}
               </StyledBox>
-              <StyledBox handleItemType={handleItemType(item.code,isItemHighlighted(item))} >{item.comment}</StyledBox>
+              {item.comment&&<StyledBoxComment itemType={handleItemType(item.code, isItemHighlighted(item))}>{item.comment}</StyledBoxComment>}
               {item.children && renderItems(item.children)}
-            </StyledItem>
-
-
-
+            </div>
           ))}
-
-
       </React.Fragment>
-
     );
   };
 
@@ -101,11 +93,12 @@ const App = () => {
           type="text"
           value={searchQuery}
           onChange={handleSearch}
-          placeholder="Поиск..."
+          placeholder="Поиск по ОКВЭД"
         />
+        <span>Результат поиска: {searchResult.length} </span>
       </StyledInput>
       <StyledItemContainer>
-        {renderItems(searchData,)}
+        {renderItems(searchData)}
       </StyledItemContainer>
 
     </div>
