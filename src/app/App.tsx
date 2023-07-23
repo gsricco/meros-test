@@ -9,9 +9,6 @@ import {convertToSearchResultItem} from "../common/utils/convertToSearchResultIt
 
 
 const App = () => {
-
-
-
   const saveSearch= localStorage.getItem('search');
   const saveFound = JSON.parse(localStorage.getItem('foundItems')||'[]');
 
@@ -24,7 +21,7 @@ const App = () => {
     const search = localStorage.getItem('search') || ''
     setSearchQuery(search);
 
-    const foundItems = findItems(data, search);
+    const foundItems = query? findItems(data, search):[];
     localStorage.setItem('foundItems', JSON.stringify(foundItems))
     const found = localStorage.getItem('foundItems') || ''
     setSearchResult(JSON.parse(found));
@@ -54,7 +51,9 @@ const App = () => {
   const searchData = data.map(convertToSearchResultItem);
 
   const isItemHighlighted = (item: SearchResultItem): boolean => {
-    if(searchQuery ==='') return false;
+    if(searchQuery ==='') {
+      return false;
+    }
     else
     return searchResult.some((searchItem) => JSON.stringify(searchItem) === JSON.stringify(item));
   };
