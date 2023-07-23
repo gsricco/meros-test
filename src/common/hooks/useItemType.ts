@@ -1,12 +1,11 @@
-
-export const useItemType = ()=>{
-  const handleItemType = (code: string, isHighlighted:boolean) => {
+export const useItemType = () => {
+  const handleItemType = (code: string, isHighlighted: boolean) => {
     switch (code.length) {
       case 1:
         return {
-        padding: '10px 0 10px 10px',
+          padding: '10px 0 10px 10px',
           color: `${isHighlighted ? '#4CAF50' : 'black'}`,
-      };
+        };
       case 2:
         return {
           padding: '10px 0 10px 20px',
@@ -41,12 +40,12 @@ export const useItemType = ()=>{
         return {
           padding: '10px 0 10px 80px',
           color: `${isHighlighted ? '#4CAF50' : 'black'}`,
-          };
-case 9:
+        };
+      case 9:
         return {
           padding: '10px 0 10px 90px',
           color: `${isHighlighted ? '#4CAF50' : 'black'}`,
-          };
+        };
 
       default:
         return {
@@ -55,7 +54,5 @@ case 9:
         };
     }
   };
-
-
-  return {handleItemType}
+  return {handleItemType};
 }

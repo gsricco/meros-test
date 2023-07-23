@@ -1,14 +1,14 @@
 type ItemType = {
-  padding: string
-  color: string
+  padding: string;
+  color: string;
 }
 
 export type StyledPropsType = {
-  itemType: ItemType
+  itemType: ItemType;
 }
 
 export type HandleItemType = {
-  handleItemType: (code: string, isHighlighted: boolean) => ItemType
+  handleItemType: (code: string, isHighlighted: boolean) => ItemType;
 }
 
 export interface Item {

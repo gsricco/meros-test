@@ -7,18 +7,15 @@ export const StyledBox = styled.div<StyledPropsType>
     align-items: center;
     border-top: 1px solid darkgray;
     ${props => props.itemType ? props.itemType : ''}
-  `
-
+  `;
 export const StyledBoxComment = styled(StyledBox)<StyledPropsType>
-`
-  display: flex;  
-  flex-direction: column;
-  align-items: flex-start;
-  border: none;  
-  font-style: italic;
-`
-
-
+  `
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: none;
+    font-style: italic;
+  `;
 export const StyledItemContainer = styled.div
   `
     display: flex;
@@ -29,9 +26,7 @@ export const StyledItemContainer = styled.div
     margin-top: 150px;
     margin-left: 5vw;
     border: 2px solid darkgray;
-  `
-
-
+  `;
 export const StyledInput = styled.div
   `
     display: flex;
@@ -59,4 +54,4 @@ export const StyledInput = styled.div
       width: 100%;
       padding: 0 20px;
     }
-  `
+  `;
