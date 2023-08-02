@@ -19,3 +19,8 @@ export type Item = {
 export type SearchResultItem = Item & {
   children?: SearchResultItem[];
 };
+export type SearchResultsPropsType = {
+  items: Item[]
+  searchQuery: string
+  searchResult:SearchResultItem[]
+}
