@@ -8,7 +8,7 @@ export type StyledPropsType = {
 export type HandleItemType = {
   handleItemType: (code: string, isHighlighted: boolean) => ItemType;
 };
-export interface Item {
+export type Item = {
   code: string;
   parent_code: string;
   section: string;
@@ -16,6 +16,6 @@ export interface Item {
   comment: string;
   children?: Item[];
 };
-export interface SearchResultItem extends Item {
+export type SearchResultItem = Item & {
   children?: SearchResultItem[];
 };

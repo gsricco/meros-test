@@ -54,19 +54,31 @@ const App = () => {
   };
 
   const renderItems = (items: SearchResultItem[]) => {
+
     return (
       <React.Fragment>
-        {items.map((item, index) => (
-          <div key={index}>
-            <StyledBox itemType={handleItemType(item.code, isItemHighlighted(item))}>
-              {isItemHighlighted(item) && <img src={icon} width={'40px'} alt="tetst"/>}
-              {item.code} - {item.name}
-            </StyledBox>
-            {item.comment && <StyledBoxComment
-                itemType={handleItemType(item.code, isItemHighlighted(item))}>{item.comment}</StyledBoxComment>}
-            {item.children && renderItems(item.children)}
-          </div>
-        ))}
+        {items.map((item, index) => {
+          const highlightedText = new RegExp(searchQuery, 'gi');
+          const replacedTextName = item.name.replace(highlightedText, (match) => `<mark>${match}</mark>`);
+          const replacedTextCode = item.code.replace(highlightedText, (match) => `<mark>${match}</mark>`);
+          const replacedTextComment = item.comment.replace(highlightedText, (match) => `<mark>${match}</mark>`);
+
+
+          return (
+            <div key={index}>
+              <StyledBox itemType={handleItemType(item.code, isItemHighlighted(item))}>
+                {isItemHighlighted(item) && <img src={icon} width={'40px'} alt="tetst"/>}
+                {replacedTextCode ? <span dangerouslySetInnerHTML={{__html: replacedTextCode}}/> : item.code}
+                -
+                {replacedTextName ? <span dangerouslySetInnerHTML={{__html: replacedTextName}}/> : item.name}
+              </StyledBox>
+              {item.comment && <StyledBoxComment itemType={handleItemType(item.code, isItemHighlighted(item))}>
+                {replacedTextComment ? <span dangerouslySetInnerHTML={{__html: replacedTextComment}}/> : item.comment}
+              </StyledBoxComment>}
+              {item.children && renderItems(item.children)}
+            </div>
+          )
+        })}
       </React.Fragment>
     );
   };
